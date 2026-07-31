@@ -105,16 +105,17 @@
 - [x] Login Screen (UI, input form validation, login request integration)
 - [x] Register Screen (UI, name/email/match-password validations, auto-redirect)
 
-### Customer (Phase 7 – Complete)
+### Customer (Phase 8 – Complete)
 
 - [x] Product Listing (UI & list builder with retry/loading/empty/refresh states)
 - [x] Product Details (UI & detail specs card)
-- [ ] Purchase Product (UI)
+- [x] Purchase Product (UI, Buy Now flow & out-of-stock dialogs)
+- [x] Order History Screen (UI & controller)
 
-### Realtime
+### Realtime (Phase 8 – Complete)
 
 - [x] Socket Connection (SocketService connect/disconnect/listen/emit)
-- [ ] Live Stock Updates (UI bindings)
+- [x] Live Stock Updates (UI bindings updating listings and details reactively)
 
 ### Testing
 

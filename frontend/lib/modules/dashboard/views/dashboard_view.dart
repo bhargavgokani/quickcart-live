@@ -21,6 +21,11 @@ class DashboardView extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
+            onPressed: () => Get.toNamed(Routes.orders),
+            icon: const Icon(Icons.history),
+            tooltip: 'Order History',
+          ),
+          IconButton(
             onPressed: () => authController.logout(),
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
