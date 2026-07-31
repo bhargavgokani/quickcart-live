@@ -8,6 +8,7 @@ import '../../modules/dashboard/views/dashboard_view.dart';
 import '../../modules/order/bindings/order_binding.dart';
 import '../../modules/order/views/order_list_view.dart';
 import '../../modules/product/bindings/product_binding.dart';
+import '../../modules/product/views/product_detail_view.dart';
 import '../../modules/product/views/product_list_view.dart';
 import 'app_routes.dart';
 
@@ -38,6 +39,11 @@ class AppPages {
     GetPage(
       name: Routes.products,
       page: () => const ProductListView(),
+      binding: ProductBinding(),
+    ),
+    GetPage(
+      name: Routes.productDetail,
+      page: () => const ProductDetailView(),
       binding: ProductBinding(),
     ),
     GetPage(

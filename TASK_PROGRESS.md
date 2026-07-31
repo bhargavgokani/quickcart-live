@@ -105,10 +105,10 @@
 - [x] Login Screen (UI, input form validation, login request integration)
 - [x] Register Screen (UI, name/email/match-password validations, auto-redirect)
 
-### Customer
+### Customer (Phase 7 – Complete)
 
-- [ ] Product Listing (UI)
-- [ ] Product Details (UI)
+- [x] Product Listing (UI & list builder with retry/loading/empty/refresh states)
+- [x] Product Details (UI & detail specs card)
 - [ ] Purchase Product (UI)
 
 ### Realtime
