@@ -4,7 +4,7 @@
 
 - [x] Repository Created
 - [x] Backend Initialized
-- [ ] Flutter Initialized
+- [x] Flutter Initialized
 - [x] MongoDB Connected
 - [x] Environment Variables Configured
 
@@ -90,28 +90,30 @@
 
 ## Flutter
 
-### Setup
+### Setup (Phase 5 – Complete)
 
-- [ ] GetX Setup
-- [ ] Routing
-- [ ] Theme
-- [ ] API Service
+- [x] GetX Setup (Bindings, Controllers, Views, routing)
+- [x] Routing (AppRoutes, AppPages, UnknownRoute fallbacks)
+- [x] Theme (Material 3 light configuration)
+- [x] API Service (http wrapper with auth injection)
+- [x] Local Storage (get_storage token & profile storage service)
+- [x] App Config (environment profiles)
 
 ### Authentication
 
-- [ ] Login Screen
-- [ ] Register Screen
+- [ ] Login Screen (UI)
+- [ ] Register Screen (UI)
 
 ### Customer
 
-- [ ] Product Listing
-- [ ] Product Details
-- [ ] Purchase Product
+- [ ] Product Listing (UI)
+- [ ] Product Details (UI)
+- [ ] Purchase Product (UI)
 
 ### Realtime
 
-- [ ] Socket Connection
-- [ ] Live Stock Updates
+- [x] Socket Connection (SocketService connect/disconnect/listen/emit)
+- [ ] Live Stock Updates (UI bindings)
 
 ### Testing
 
