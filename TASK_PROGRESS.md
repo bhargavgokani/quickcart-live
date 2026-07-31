@@ -58,12 +58,14 @@
 - [x] PATCH /api/v1/products/:id/stock (ADMIN only – stock management)
 - [x] Registered in src/routes/index.js under /api/v1/products
 
-### Orders
+### Orders (Phase 4 – Complete)
 
-- [ ] Order Model
-- [ ] Checkout API
-- [ ] Prevent Overselling
-- [ ] Order Creation
+- [x] Order Model (src/models/Order.js)
+- [x] Checkout API (POST /api/v1/checkout)
+- [x] Safe Checkout (Anti-Oversell atomic findOneAndUpdate)
+- [x] Order Creation (stores correct fields on success)
+- [x] Customer Order History (GET /api/v1/orders)
+- [x] Admin Order History (GET /api/v1/orders/all)
 
 ### Socket.IO
 
@@ -76,7 +78,7 @@
 - [x] Health endpoint test
 - [x] Authentication tests (register, login, middleware, roles)
 - [x] Product tests (CRUD, auth guards, validation, soft-delete, stock)
-- [ ] Checkout Concurrency Tests
+- [x] Checkout Concurrency Tests (100 simultaneous requests against 10-unit stock)
 
 ### Deployment
 
