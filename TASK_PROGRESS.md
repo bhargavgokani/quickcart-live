@@ -67,11 +67,11 @@
 - [x] Customer Order History (GET /api/v1/orders)
 - [x] Admin Order History (GET /api/v1/orders/all)
 
-### Socket.IO
+### Socket.IO (Phase 5 – Complete)
 
-- [ ] Socket Setup
-- [ ] Stock Updates
-- [ ] Product Updates
+- [x] Socket Setup (src/config/socket.js with clean connection logs)
+- [x] Stock Updates (STOCK_UPDATED emitted on checkout success)
+- [x] Product Updates (PRODUCT_CREATED, PRODUCT_UPDATED, PRODUCT_DELETED emitted)
 
 ### Testing
 
@@ -79,6 +79,7 @@
 - [x] Authentication tests (register, login, middleware, roles)
 - [x] Product tests (CRUD, auth guards, validation, soft-delete, stock)
 - [x] Checkout Concurrency Tests (100 simultaneous requests against 10-unit stock)
+- [x] Socket.IO integration tests (emissions and payloads verified via mocks)
 
 ### Deployment
 

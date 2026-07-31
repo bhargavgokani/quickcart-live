@@ -1,6 +1,8 @@
 'use strict';
 
 const Product = require('../models/Product');
+const { emitEvent } = require('../config/socket');
+const SOCKET_EVENTS = require('../constants/socketEvents');
 
 /**
  * Returns all active products sorted by newest first.
@@ -37,6 +39,7 @@ const getProductById = async (id) => {
  */
 const createProduct = async ({ name, description, price, stock, image }) => {
   const product = await Product.create({ name, description, price, stock, image });
+  emitEvent(SOCKET_EVENTS.PRODUCT_CREATED, { product });
   return product;
 };
 
@@ -65,6 +68,7 @@ const updateProduct = async (id, updates) => {
   });
 
   await product.save(); // triggers schema validation
+  emitEvent(SOCKET_EVENTS.PRODUCT_UPDATED, { product });
   return product;
 };
 
@@ -86,6 +90,7 @@ const deleteProduct = async (id) => {
 
   product.isActive = false;
   await product.save();
+  emitEvent(SOCKET_EVENTS.PRODUCT_DELETED, { productId: String(product._id) });
   return product;
 };
 
@@ -120,6 +125,7 @@ const updateStock = async (id, stock) => {
 
   product.stock = stock;
   await product.save();
+  emitEvent(SOCKET_EVENTS.PRODUCT_UPDATED, { product });
   return product;
 };
 

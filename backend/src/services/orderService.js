@@ -95,6 +95,14 @@ const checkout = async (userId, productId) => {
     purchasedAt: new Date(),
   });
 
+  // Emit STOCK_UPDATED event on successful checkout
+  const { emitEvent } = require('../config/socket');
+  const SOCKET_EVENTS = require('../constants/socketEvents');
+  emitEvent(SOCKET_EVENTS.STOCK_UPDATED, {
+    productId: String(productId),
+    stock: updatedProduct.stock,
+  });
+
   return {
     order: await order.populate('product', 'name price image'),
     remainingStock: updatedProduct.stock,

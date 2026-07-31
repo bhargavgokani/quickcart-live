@@ -19,10 +19,10 @@ const initSocket = (httpServer) => {
   });
 
   io.on('connection', (socket) => {
-    console.log(`🔌 Socket connected: ${socket.id}`);
+    console.log(`Client Connected: ${socket.id}`);
 
     socket.on('disconnect', () => {
-      console.log(`🔌 Socket disconnected: ${socket.id}`);
+      console.log(`Client Disconnected: ${socket.id}`);
     });
   });
 
@@ -41,4 +41,16 @@ const getIO = () => {
   return io;
 };
 
-module.exports = { initSocket, getIO };
+/**
+ * Broadcasts an event to all connected Socket.IO clients.
+ * Safe to call even if Socket.IO is not initialised (e.g. during testing).
+ * @param {string} event - Event name from src/constants/socketEvents.js
+ * @param {object} payload - Event payload
+ */
+const emitEvent = (event, payload) => {
+  if (io) {
+    io.emit(event, payload);
+  }
+};
+
+module.exports = { initSocket, getIO, emitEvent };
