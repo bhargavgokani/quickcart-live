@@ -99,10 +99,11 @@
 - [x] Local Storage (get_storage token & profile storage service)
 - [x] App Config (environment profiles)
 
-### Authentication
+### Authentication (Phase 6 – Complete)
 
-- [ ] Login Screen (UI)
-- [ ] Register Screen (UI)
+- [x] Splash Screen (UI & auto-session check routing)
+- [x] Login Screen (UI, input form validation, login request integration)
+- [x] Register Screen (UI, name/email/match-password validations, auto-redirect)
 
 ### Customer
 

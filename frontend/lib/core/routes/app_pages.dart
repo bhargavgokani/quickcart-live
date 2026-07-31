@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../../modules/auth/bindings/auth_binding.dart';
 import '../../modules/auth/views/login_view.dart';
 import '../../modules/auth/views/register_view.dart';
+import '../../modules/auth/views/splash_view.dart';
 import '../../modules/dashboard/bindings/dashboard_binding.dart';
 import '../../modules/dashboard/views/dashboard_view.dart';
 import '../../modules/order/bindings/order_binding.dart';
@@ -11,17 +12,22 @@ import '../../modules/product/views/product_list_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
-  static const initial = Routes.login;
+  static const initial = Routes.splash;
 
   static final pages = [
     GetPage(
+      name: Routes.splash,
+      page: () => const SplashView(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
       name: Routes.login,
-      page: () => const LoginView(),
+      page: () => LoginView(),
       binding: AuthBinding(),
     ),
     GetPage(
       name: Routes.register,
-      page: () => const RegisterView(),
+      page: () => RegisterView(),
       binding: AuthBinding(),
     ),
     GetPage(
