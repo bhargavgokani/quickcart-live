@@ -76,5 +76,5 @@ During high-traffic events, processing non-critical tasks synchronously during c
 |------|----------------------|------------|
 | **Database Reads** | Product catalog checks during heavy traffic. | Cache the product list in Redis. |
 | **Real-time Synchronization** | Multi-node environments missing cross-server socket broadcasts. | Socket.IO Redis Adapter for event synchronization. |
-| **Checkout Concurrency** | Race conditions during high-volume purchasing. | Maintain Mongoose atomic operators and MongoDB transactions. |
+| **Checkout Concurrency** | Race conditions during high-volume purchasing. | Maintain Mongoose atomic `findOneAndUpdate()` operations with conditional stock checking. |
 | **Emailing / Billing** | Slow HTTP checkout transactions due to synchronous mail sends. | Offload mail actions to background workers via message queues. |

@@ -31,7 +31,7 @@ backend/
 │   ├── middleware/     # Auth checks, error handling, 404 gates
 │   ├── models/         # User, Product, Order Schemas
 │   ├── routes/         # Central routes registry
-│   ├── services/       # Concurrency transactions logic
+│   ├── services/       # Business logic & atomic checkout operations
 │   └── tests/          # Integration and unit tests
 ├── server.js           # Server startup script
 ├── app.js              # Express routing definitions

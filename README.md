@@ -9,7 +9,7 @@ The application is engineered to maintain high data integrity, specifically impl
 ## Project Features
 
 * **Real-time Inventory Management**: Connected clients receive instant stock updates on checkout or catalog changes using Socket.IO.
-* **Strict Concurrency Protection**: High-volume checkout requests are validated atomically using MongoDB transaction logic and atomic operators.
+* **Strict Concurrency Protection**: High-volume checkout requests are validated atomically using Mongoose `findOneAndUpdate()` with conditional stock checking and atomic operators.
 * **Comprehensive Authentication**: JWT-based session checks, cookie parsing, route restrictions, and customer/admin role-based gates.
 * **Responsive Material Design**: Premium client interface with splash, dynamic login/register, list catalog status, and product specifications.
 * **Robust Error Resilience**: Dynamic error-handling screen fallbacks with user-friendly retry controls.
@@ -171,16 +171,24 @@ The application integrates WebSockets via Socket.IO. When checkout processes suc
 ## Concurrency Protection (Preventing Overselling)
 
 To guarantee that the database never oversells an item when multiple clients attempt to buy the last remaining stock concurrently:
-* **Atomic MongoDB Check**: The checkout script uses Mongoose's find-and-modify operations utilizing `stock: { $gt: 0 }` filters.
-* **Database Level Decrement**: When checkout executes, the stock is decremented atomically:
+* **Atomic MongoDB Check**: The checkout service executes a single atomic Mongoose `findOneAndUpdate()` operation with a conditional `stock: { $gt: 0 }` filter.
+* **Database Level Decrement**: When checkout executes, stock is decremented atomically at the database engine level:
   ```javascript
-  const product = await Product.findOneAndUpdate(
-    { _id: productId, stock: { $gte: quantity }, isActive: true },
-    { $inc: { stock: -quantity } },
-    { new: true, session }
+  const updatedProduct = await Product.findOneAndUpdate(
+    {
+      _id: productId,
+      isActive: true,
+      stock: { $gt: 0 },   // Guard: only proceed if stock > 0
+    },
+    {
+      $inc: { stock: -1 }, // Atomically decrement by exactly 1
+    },
+    {
+      new: true,           // Return the document AFTER the update
+    }
   );
   ```
-* **Strict Fallback**: If the query fails to find a matching active document with sufficient stock, the transaction immediately fails, returns `409 Out of Stock`, and rolls back.
+* **Strict Fallback**: If the query fails to find a matching active document with sufficient stock (i.e. stock is 0), `findOneAndUpdate()` returns `null`. The checkout service immediately aborts and returns `409 Out of Stock`.
 
 ---
 
@@ -194,17 +202,24 @@ To guarantee that the database never oversells an item when multiple clients att
 
 ---
 
+## Documentation
+
+## Additional Documentation
+
+- docs/api.md
+- docs/architecture.md
+- docs/deployment.md
+- docs/scaling.md
+- docs/release-checklist.md
+- docs/team-collaboration.md
+
+---
+
 ## Future Improvements
 
 * **Redis Cache Layer**: Integrate Redis cache on the `GET /products` catalog endpoint to minimize query loads during heavy traffic.
 * **Interactive Chat / Notification Service**: Live delivery tracking sockets.
 * **Widget & Controller Verification**: Set up comprehensive Flutter testing scripts to cover edge-cases.
-
----
-
-## Screenshots
-
-*(Screenshots of catalog views, checkout success alerts, and real-time updates placeholder)*
 
 ---
 

@@ -35,7 +35,7 @@ The system operates on a client-server model connected via a unified HTTP and We
 ### 2. MongoDB Atlas (Database Layer)
 * **JSON-Friendly Document Schema**: Since frontend client calls and backend APIs communicate in JSON, MongoDB stores and retrieves data in BSON natively, eliminating Object-Relational Impedance mismatch.
 * **Horizontal Scalability**: MongoDB's sharding and replica set structures allow the database to scale out horizontally as traffic volumes expand.
-* **Atomic Mutation Support**: Supports find-and-modify operators (`findOneAndUpdate`) which allow validation and updates to run in a single atomic transaction cycle.
+* **Atomic Mutation Support**: Supports find-and-modify operators (`findOneAndUpdate`) which allow validation and updates to run in a single atomic database operation.
 
 ### 3. Socket.IO (Real-time Layer)
 * **Auto-Reconnection**: Socket.IO handles disconnection and network state adjustments automatically.
@@ -44,12 +44,20 @@ The system operates on a client-server model connected via a unified HTTP and We
 
 ### 4. Atomic Checkout Logic (Concurrency Guard)
 * **Prevention of Overselling**: In high-concurrency situations (e.g. flash sales where 100 users try to buy the last 10 items), a standard `get stock -> check if > 0 -> decrement stock` flow causes race conditions.
-* **Database Level Lock**: By combining Mongoose transactions with atomic operator queries:
+* **Database Level Atomic Operation**: By executing a Mongoose `findOneAndUpdate()` operation with a conditional `stock: { $gt: 0 }` filter:
   ```javascript
-  const product = await Product.findOneAndUpdate(
-    { _id: productId, stock: { $gte: quantity }, isActive: true },
-    { $inc: { stock: -quantity } },
-    { new: true, session }
+  const updatedProduct = await Product.findOneAndUpdate(
+    {
+      _id: productId,
+      isActive: true,
+      stock: { $gt: 0 },   // Guard: only proceed if stock > 0
+    },
+    {
+      $inc: { stock: -1 }, // Atomically decrement by exactly 1
+    },
+    {
+      new: true,           // Return the document AFTER the update
+    }
   );
   ```
-  MongoDB guarantees that checking availability and decrementing the value are executed as a single blocking transaction. If stock falls below `quantity`, the query yields `null` and rolls back, ensuring overselling is impossible.
+  MongoDB guarantees that checking availability (`stock: { $gt: 0 }`) and decrementing the stock (`$inc: { stock: -1 }`) are executed as a single atomic operation at the document level. If stock is exhausted, the query yields `null` and aborts checkout without modifying any document, guaranteeing zero overselling.
