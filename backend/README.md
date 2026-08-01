@@ -59,4 +59,4 @@ Configure these environment variables in your local `.env` file or in the **Envi
 4. Expand the **Advanced** section and add all required environment variables under the **Environment Variables** panel (see the table above).
 5. Render will automatically provision the `PORT` and direct traffic to your Express application.
 6. Verify your deployment health status using the health check endpoint:
-   `https://your-service-name.onrender.com/api/v1/health`
+   `https://quickcart-live.onrender.com/api/v1/health`

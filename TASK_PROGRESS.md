@@ -84,7 +84,7 @@
 ### Deployment
 
 - [x] Deploy Backend (Production readiness configured: PORT, environment validation, database graceful close)
-- [ ] Verify Live APIs
+- [x] Verify Live APIs (Endpoints verified online)
 
 ---
 
@@ -140,9 +140,9 @@
 
 ## Submission Checklist
 
-- [ ] Public GitHub Repository
-- [ ] Live Backend URL
+- [x] Public GitHub Repository (https://github.com/bhargavgokani/quickcart-live.git)
+- [x] Live Backend URL (https://quickcart-live.onrender.com)
 - [ ] APK Download Link
 - [x] Seeded Admin Account (script ready: npm run seed)
 - [ ] Seeded Customer Account
-- [ ] README Completed
+- [x] README Completed (documented at workspace root and backend)
