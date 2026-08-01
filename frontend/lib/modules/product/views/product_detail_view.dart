@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/routes/app_routes.dart';
 import '../controllers/product_controller.dart';
 
 class ProductDetailView extends StatelessWidget {
@@ -123,6 +124,10 @@ class ProductDetailView extends StatelessWidget {
                         onPressed: stock > 0
                             ? () => _handleBuyPress(context, productController, productId)
                             : null,
+                        style: ElevatedButton.styleFrom(
+                          disabledBackgroundColor: Colors.grey[300],
+                          disabledForegroundColor: Colors.grey[600],
+                        ),
                         child: Text(stock > 0 ? 'BUY NOW' : 'OUT OF STOCK'),
                       ),
               ],
@@ -140,15 +145,22 @@ class ProductDetailView extends StatelessWidget {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-            title: const Text('Purchase Successful'),
-            content: const Text('Thank you! Your order has been placed successfully.'),
+            title: const Text('🎉 Purchase Successful'),
+            content: const Text(
+                'Your order has been placed successfully.\n\nYou can continue shopping or view your order history.'),
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Close dialog
-                  Get.back(); // Navigate back to Dashboard
+                  Navigator.pop(context); // Close dialog (stays on detail page)
                 },
-                child: const Text('OK'),
+                child: const Text('Continue Shopping'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close dialog
+                  Get.toNamed(Routes.orders); // Route to Order History page
+                },
+                child: const Text('View Orders'),
               ),
             ],
           ),
@@ -168,8 +180,7 @@ class ProductDetailView extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context); // Close dialog
-                    Get.back(); // Navigate back to Dashboard
+                    Navigator.pop(context); // Close dialog (stays on detail page)
                   },
                   child: const Text('OK'),
                 ),
