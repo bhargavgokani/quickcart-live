@@ -62,35 +62,35 @@ class OrderListView extends GetView<OrderController> {
               return Card(
                 margin: const EdgeInsets.only(bottom: AppSpacing.md),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(14.0),
                   child: Row(
                     children: [
                       // Thumbnail image or Icon Badge
                       Container(
-                        width: 64,
-                        height: 64,
+                        width: 56,
+                        height: 56,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF1F5F9),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
+                          color: const Color(0xFFF3F4F6),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
                         ),
                         child: imageUrl != null && imageUrl.isNotEmpty
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
                                   imageUrl,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) => const Icon(
                                     Icons.shopping_bag_outlined,
-                                    color: Color(0xFF2563EB),
-                                    size: 28,
+                                    color: Color(0xFF0F172A),
+                                    size: 24,
                                   ),
                                 ),
                               )
                             : const Icon(
                                 Icons.shopping_bag_outlined,
-                                color: Color(0xFF2563EB),
-                                size: 28,
+                                color: Color(0xFF0F172A),
+                                size: 24,
                               ),
                       ),
                       AppSpacing.gapMd,
@@ -103,48 +103,48 @@ class OrderListView extends GetView<OrderController> {
                             Text(
                               productName,
                               style: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0F172A),
+                                color: Color(0xFF111827),
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Text(
                               'Purchased: $dateFormatted',
                               style: const TextStyle(
                                 fontSize: 12,
-                                color: Color(0xFF64748B),
+                                color: Color(0xFF6B7280),
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 6),
 
                             // Status Chip & Price Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: status == 'SUCCESS' ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2),
-                                    borderRadius: BorderRadius.circular(6),
+                                    color: status == 'SUCCESS' ? const Color(0xFFE6F4EA) : const Color(0xFFFCE8E6),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: Text(
                                     status,
                                     style: TextStyle(
                                       fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      color: status == 'SUCCESS' ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                                      fontWeight: FontWeight.w600,
+                                      color: status == 'SUCCESS' ? const Color(0xFF137333) : const Color(0xFFC5221F),
                                     ),
                                   ),
                                 ),
                                 Text(
                                   '\$${price.toStringAsFixed(2)}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w800,
-                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF111827),
                                   ),
                                 ),
                               ],

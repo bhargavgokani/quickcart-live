@@ -23,14 +23,14 @@ class DashboardView extends StatelessWidget {
         title: Row(
           children: [
             CircleAvatar(
-              radius: 20,
-              backgroundColor: const Color.fromRGBO(37, 99, 235, 0.12),
+              radius: 18,
+              backgroundColor: const Color(0xFFF3F4F6),
               child: Text(
                 userName.isNotEmpty ? userName[0].toUpperCase() : 'C',
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                style: const TextStyle(
+                  color: Color(0xFF0F172A),
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -41,14 +41,14 @@ class DashboardView extends StatelessWidget {
                 children: [
                   const Text(
                     'Welcome back,',
-                    style: TextStyle(fontSize: 12, color: Color(0xFF64748B), fontWeight: FontWeight.normal),
+                    style: TextStyle(fontSize: 11, color: Color(0xFF6B7280), fontWeight: FontWeight.normal),
                   ),
                   Text(
                     userName,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0F172A),
+                      color: Color(0xFF111827),
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -62,15 +62,15 @@ class DashboardView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () => Get.toNamed(Routes.orders),
-            icon: const Icon(Icons.history_rounded),
+            icon: const Icon(Icons.history_rounded, size: 22),
             tooltip: 'Order History',
           ),
           IconButton(
             onPressed: () => authController.logout(),
-            icon: const Icon(Icons.logout_rounded),
+            icon: const Icon(Icons.logout_rounded, size: 22),
             tooltip: 'Logout',
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 4),
         ],
       ),
       body: SafeArea(
@@ -99,26 +99,15 @@ class DashboardView extends StatelessWidget {
             return CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                // Hero Promotional Banner
+                // Clean Minimalist Promo Banner
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.all(AppSpacing.md),
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF2563EB), Color(0xFF1D4ED8)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromRGBO(37, 99, 235, 0.25),
-                            blurRadius: 16,
-                            offset: Offset(0, 6),
-                          ),
-                        ],
+                        color: const Color(0xFF0F172A),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       child: Row(
                         children: [
@@ -127,52 +116,45 @@ class DashboardView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                                   decoration: BoxDecoration(
-                                    color: const Color.fromRGBO(255, 255, 255, 0.2),
-                                    borderRadius: BorderRadius.circular(20),
+                                    color: const Color.fromRGBO(255, 255, 255, 0.15),
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: const Text(
-                                    '⚡ Live Flash Inventory',
+                                    'Live Inventory',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                                 AppSpacing.gapSm,
                                 const Text(
-                                  "Discover Today's Deals",
+                                  'Explore Products',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.5,
+                                    letterSpacing: -0.3,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 2),
                                 const Text(
-                                  'Instant order checkout & real-time stock sync',
+                                  'Real-time stock tracking & instant order checkout',
                                   style: TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 0.85),
-                                    fontSize: 13,
+                                    color: Color.fromRGBO(255, 255, 255, 0.75),
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(255, 255, 255, 0.15),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.local_offer_rounded,
-                              color: Colors.white,
-                              size: 32,
-                            ),
+                          const Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.white,
+                            size: 28,
                           ),
                         ],
                       ),
@@ -190,23 +172,23 @@ class DashboardView extends StatelessWidget {
                         const Text(
                           'Featured Products',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0F172A),
+                            color: Color(0xFF111827),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF1F5F9),
-                            borderRadius: BorderRadius.circular(12),
+                            color: const Color(0xFFF3F4F6),
+                            borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
                             '${productController.products.length} Items',
                             style: const TextStyle(
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF64748B),
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF6B7280),
                             ),
                           ),
                         ),
@@ -237,7 +219,7 @@ class DashboardView extends StatelessWidget {
                                 arguments: product,
                               );
                             },
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(12),
                             child: Padding(
                               padding: const EdgeInsets.all(14.0),
                               child: Row(
@@ -245,30 +227,30 @@ class DashboardView extends StatelessWidget {
                                 children: [
                                   // Rounded Image Thumbnail
                                   Container(
-                                    width: 100,
-                                    height: 100,
+                                    width: 92,
+                                    height: 92,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF1F5F9),
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
+                                      color: const Color(0xFFF3F4F6),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
                                     ),
                                     child: imageUrl != null && imageUrl.isNotEmpty
                                         ? ClipRRect(
-                                            borderRadius: BorderRadius.circular(12),
+                                            borderRadius: BorderRadius.circular(10),
                                             child: Image.network(
                                               imageUrl,
                                               fit: BoxFit.cover,
                                               errorBuilder: (context, error, stackTrace) => const Icon(
                                                 Icons.shopping_bag_outlined,
-                                                size: 40,
-                                                color: Color(0xFF94A3B8),
+                                                size: 36,
+                                                color: Color(0xFF9CA3AF),
                                               ),
                                             ),
                                           )
                                         : const Icon(
                                             Icons.shopping_bag_outlined,
-                                            size: 40,
-                                            color: Color(0xFF94A3B8),
+                                            size: 36,
+                                            color: Color(0xFF9CA3AF),
                                           ),
                                   ),
                                   AppSpacing.gapMd,
@@ -280,17 +262,17 @@ class DashboardView extends StatelessWidget {
                                       children: [
                                         // Stock Status Badge
                                         Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                           decoration: BoxDecoration(
-                                            color: stock > 0 ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2),
-                                            borderRadius: BorderRadius.circular(6),
+                                            color: stock > 0 ? const Color(0xFFE6F4EA) : const Color(0xFFFCE8E6),
+                                            borderRadius: BorderRadius.circular(4),
                                           ),
                                           child: Text(
                                             stock > 0 ? 'In Stock ($stock)' : 'Out of Stock',
                                             style: TextStyle(
                                               fontSize: 11,
-                                              fontWeight: FontWeight.bold,
-                                              color: stock > 0 ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                                              fontWeight: FontWeight.w600,
+                                              color: stock > 0 ? const Color(0xFF137333) : const Color(0xFFC5221F),
                                             ),
                                           ),
                                         ),
@@ -300,9 +282,9 @@ class DashboardView extends StatelessWidget {
                                         Text(
                                           name,
                                           style: const TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0F172A),
+                                            color: Color(0xFF111827),
                                           ),
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
@@ -314,7 +296,7 @@ class DashboardView extends StatelessWidget {
                                           description,
                                           style: const TextStyle(
                                             fontSize: 13,
-                                            color: Color(0xFF64748B),
+                                            color: Color(0xFF6B7280),
                                             height: 1.3,
                                           ),
                                           maxLines: 2,
@@ -328,10 +310,10 @@ class DashboardView extends StatelessWidget {
                                           children: [
                                             Text(
                                               '\$${price.toStringAsFixed(2)}',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w800,
-                                                color: Theme.of(context).primaryColor,
+                                              style: const TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF111827),
                                               ),
                                             ),
                                             ElevatedButton(
@@ -342,13 +324,14 @@ class DashboardView extends StatelessWidget {
                                                 );
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                minimumSize: const Size(80, 36),
-                                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                                backgroundColor: const Color(0xFF0F172A),
+                                                minimumSize: const Size(72, 34),
+                                                padding: const EdgeInsets.symmetric(horizontal: 14),
                                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                               ),
                                               child: const Text(
                                                 'BUY',
-                                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                               ),
                                             ),
                                           ],

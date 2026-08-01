@@ -16,28 +16,17 @@ class SplashView extends GetView<AuthController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // App Logo Badge
+            // Simple Clean App Icon
             Container(
-              width: 96,
-              height: 96,
+              width: 80,
+              height: 80,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF2563EB), Color(0xFF4F46E5)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(28),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(37, 99, 235, 0.35),
-                    blurRadius: 24,
-                    offset: Offset(0, 10),
-                  ),
-                ],
+                color: const Color(0xFF0F172A),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(
-                Icons.shopping_bag_rounded,
-                size: 52,
+                Icons.shopping_bag_outlined,
+                size: 44,
                 color: Colors.white,
               ),
             ),
@@ -46,29 +35,28 @@ class SplashView extends GetView<AuthController> {
             const Text(
               'QuickCart Live',
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0F172A),
+                color: Color(0xFF111827),
                 letterSpacing: -0.5,
               ),
             ),
             AppSpacing.gapXs,
             const Text(
-              'Real-Time E-Commerce Engine',
+              'Real-Time Shopping Engine',
               style: TextStyle(
                 fontSize: 14,
-                color: Color(0xFF64748B),
-                letterSpacing: 0.2,
+                color: Color(0xFF6B7280),
               ),
             ),
             const SizedBox(height: 48),
-            SizedBox(
-              width: 32,
-              height: 32,
+            const SizedBox(
+              width: 28,
+              height: 28,
               child: CircularProgressIndicator(
-                strokeWidth: 3,
+                strokeWidth: 2.5,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  Theme.of(context).primaryColor,
+                  Color(0xFF0F172A),
                 ),
               ),
             ),

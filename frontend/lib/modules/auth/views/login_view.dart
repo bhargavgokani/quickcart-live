@@ -29,59 +29,48 @@ class LoginView extends GetView<AuthController> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(AppSpacing.lg),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 450),
+              constraints: const BoxConstraints(maxWidth: 420),
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // App Logo Badge
+                    // Clean App Logo Badge
                     Center(
                       child: Container(
-                        width: 80,
-                        height: 80,
+                        width: 72,
+                        height: 72,
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF2563EB), Color(0xFF4F46E5)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(24),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(37, 99, 235, 0.3),
-                              blurRadius: 20,
-                              offset: Offset(0, 8),
-                            ),
-                          ],
+                          color: const Color(0xFF0F172A),
+                          borderRadius: BorderRadius.circular(18),
                         ),
                         child: const Icon(
-                          Icons.shopping_bag_rounded,
-                          size: 42,
+                          Icons.shopping_bag_outlined,
+                          size: 38,
                           color: Colors.white,
                         ),
                       ),
                     ),
                     AppSpacing.gapLg,
 
-                    // App Title & Subtitle
+                    // Title & Subtitle
                     const Text(
-                      'QuickCart Live',
+                      'Welcome to QuickCart',
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0F172A),
+                        color: Color(0xFF111827),
                         letterSpacing: -0.5,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     AppSpacing.gapXs,
                     const Text(
-                      'Sign in to access your live shopping account',
+                      'Sign in with your email to continue',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF64748B),
+                        color: Color(0xFF6B7280),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -92,9 +81,9 @@ class LoginView extends GetView<AuthController> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
-                        labelText: 'Email Address',
+                        labelText: 'Email',
                         hintText: 'name@example.com',
-                        prefixIcon: Icon(Icons.mail_outline_rounded),
+                        prefixIcon: Icon(Icons.mail_outline_rounded, size: 20),
                       ),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
@@ -116,12 +105,13 @@ class LoginView extends GetView<AuthController> {
                         decoration: InputDecoration(
                           labelText: 'Password',
                           hintText: '••••••••',
-                          prefixIcon: const Icon(Icons.lock_outline_rounded),
+                          prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _obscurePassword.value
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
+                              size: 20,
                             ),
                             onPressed: () => _obscurePassword.toggle(),
                           ),
@@ -158,7 +148,7 @@ class LoginView extends GetView<AuthController> {
                       children: [
                         const Text(
                           "Don't have an account? ",
-                          style: TextStyle(color: Color(0xFF64748B)),
+                          style: TextStyle(color: Color(0xFF6B7280)),
                         ),
                         TextButton(
                           onPressed: () => Get.toNamed(Routes.register),

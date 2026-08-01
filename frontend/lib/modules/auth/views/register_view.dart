@@ -37,7 +37,7 @@ class RegisterView extends GetView<AuthController> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(AppSpacing.lg),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 450),
+              constraints: const BoxConstraints(maxWidth: 420),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -47,26 +47,15 @@ class RegisterView extends GetView<AuthController> {
                     // Header Logo Badge
                     Center(
                       child: Container(
-                        width: 72,
-                        height: 72,
+                        width: 64,
+                        height: 64,
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF2563EB), Color(0xFF4F46E5)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(37, 99, 235, 0.25),
-                              blurRadius: 16,
-                              offset: Offset(0, 6),
-                            ),
-                          ],
+                          color: const Color(0xFF0F172A),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                         child: const Icon(
-                          Icons.person_add_alt_1_rounded,
-                          size: 36,
+                          Icons.person_add_alt_1_outlined,
+                          size: 32,
                           color: Colors.white,
                         ),
                       ),
@@ -75,21 +64,21 @@ class RegisterView extends GetView<AuthController> {
 
                     // Title & Subtitle
                     const Text(
-                      'Join QuickCart Live',
+                      'Create Account',
                       style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0F172A),
+                        color: Color(0xFF111827),
                         letterSpacing: -0.5,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     AppSpacing.gapXs,
                     const Text(
-                      'Create your customer account to start shopping',
+                      'Sign up to get started with QuickCart',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF64748B),
+                        color: Color(0xFF6B7280),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -103,7 +92,7 @@ class RegisterView extends GetView<AuthController> {
                       decoration: const InputDecoration(
                         labelText: 'Full Name',
                         hintText: 'John Doe',
-                        prefixIcon: Icon(Icons.person_outline_rounded),
+                        prefixIcon: Icon(Icons.person_outline_rounded, size: 20),
                       ),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
@@ -119,9 +108,9 @@ class RegisterView extends GetView<AuthController> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
-                        labelText: 'Email Address',
+                        labelText: 'Email',
                         hintText: 'name@example.com',
-                        prefixIcon: Icon(Icons.mail_outline_rounded),
+                        prefixIcon: Icon(Icons.mail_outline_rounded, size: 20),
                       ),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
@@ -143,12 +132,13 @@ class RegisterView extends GetView<AuthController> {
                         decoration: InputDecoration(
                           labelText: 'Password',
                           hintText: '••••••••',
-                          prefixIcon: const Icon(Icons.lock_outline_rounded),
+                          prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _obscurePassword.value
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
+                              size: 20,
                             ),
                             onPressed: () => _obscurePassword.toggle(),
                           ),
@@ -174,12 +164,13 @@ class RegisterView extends GetView<AuthController> {
                         decoration: InputDecoration(
                           labelText: 'Confirm Password',
                           hintText: '••••••••',
-                          prefixIcon: const Icon(Icons.lock_outline_rounded),
+                          prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _obscureConfirmPassword.value
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
+                              size: 20,
                             ),
                             onPressed: () => _obscureConfirmPassword.toggle(),
                           ),
@@ -219,7 +210,7 @@ class RegisterView extends GetView<AuthController> {
                       children: [
                         const Text(
                           'Already have an account? ',
-                          style: TextStyle(color: Color(0xFF64748B)),
+                          style: TextStyle(color: Color(0xFF6B7280)),
                         ),
                         TextButton(
                           onPressed: () => Get.offAllNamed(Routes.login),

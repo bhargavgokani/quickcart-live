@@ -14,20 +14,13 @@ class AppLoadingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(37, 99, 235, 0.08),
-                shape: BoxShape.circle,
-              ),
-              child: SizedBox(
-                width: 36,
-                height: 36,
-                child: CircularProgressIndicator(
-                  strokeWidth: 3.5,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).primaryColor,
-                  ),
+            const SizedBox(
+              width: 32,
+              height: 32,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Color(0xFF0F172A),
                 ),
               ),
             ),
@@ -38,7 +31,7 @@ class AppLoadingWidget extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF64748B),
+                  color: Color(0xFF6B7280),
                 ),
                 textAlign: TextAlign.center,
               ),

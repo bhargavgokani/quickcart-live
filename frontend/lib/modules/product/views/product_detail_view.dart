@@ -52,36 +52,29 @@ class ProductDetailView extends StatelessWidget {
                     children: [
                       // Large Hero Image Container
                       Container(
-                        height: 280,
+                        height: 260,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF1F5F9),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.04),
-                              blurRadius: 16,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
+                          color: const Color(0xFFF3F4F6),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
                         ),
                         child: imageUrl != null && imageUrl.isNotEmpty
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(16),
                                 child: Image.network(
                                   imageUrl,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) => const Icon(
                                     Icons.shopping_bag_outlined,
-                                    size: 96,
-                                    color: Color(0xFF94A3B8),
+                                    size: 80,
+                                    color: Color(0xFF9CA3AF),
                                   ),
                                 ),
                               )
                             : const Icon(
                                 Icons.shopping_bag_outlined,
-                                size: 96,
-                                color: Color(0xFF94A3B8),
+                                size: 80,
+                                color: Color(0xFF9CA3AF),
                               ),
                       ),
                       AppSpacing.gapLg,
@@ -90,10 +83,10 @@ class ProductDetailView extends StatelessWidget {
                       Text(
                         name,
                         style: const TextStyle(
-                          fontSize: 24,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0F172A),
-                          letterSpacing: -0.5,
+                          color: Color(0xFF111827),
+                          letterSpacing: -0.3,
                         ),
                       ),
                       AppSpacing.gapSm,
@@ -104,17 +97,17 @@ class ProductDetailView extends StatelessWidget {
                         children: [
                           Text(
                             '\$${price.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).primaryColor,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF111827),
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                             decoration: BoxDecoration(
-                              color: stock > 0 ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2),
-                              borderRadius: BorderRadius.circular(20),
+                              color: stock > 0 ? const Color(0xFFE6F4EA) : const Color(0xFFFCE8E6),
+                              borderRadius: BorderRadius.circular(16),
                               border: Border.all(
                                 color: stock > 0 ? const Color(0xFFA7F3D0) : const Color(0xFFFECACA),
                                 width: 1,
@@ -123,17 +116,17 @@ class ProductDetailView extends StatelessWidget {
                             child: Row(
                               children: [
                                 Icon(
-                                  stock > 0 ? Icons.check_circle_rounded : Icons.error_rounded,
-                                  size: 16,
-                                  color: stock > 0 ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                                  stock > 0 ? Icons.check_circle_outline_rounded : Icons.error_outline_rounded,
+                                  size: 15,
+                                  color: stock > 0 ? const Color(0xFF137333) : const Color(0xFFC5221F),
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: 5),
                                 Text(
                                   stock > 0 ? '$stock Available' : 'Out of Stock',
                                   style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: stock > 0 ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: stock > 0 ? const Color(0xFF137333) : const Color(0xFFC5221F),
                                   ),
                                 ),
                               ],
@@ -141,15 +134,15 @@ class ProductDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Divider(height: 40),
+                      const Divider(height: 36),
 
                       // Description Section
                       const Text(
-                        'Product Overview',
+                        'Description',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0F172A),
+                          color: Color(0xFF111827),
                         ),
                       ),
                       AppSpacing.gapSm,
@@ -157,9 +150,9 @@ class ProductDetailView extends StatelessWidget {
                       Text(
                         description,
                         style: const TextStyle(
-                          fontSize: 15,
-                          height: 1.6,
-                          color: Color(0xFF475569),
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Color(0xFF4B5563),
                         ),
                       ),
                     ],
@@ -173,7 +166,7 @@ class ProductDetailView extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    top: BorderSide(color: Color(0xFFE2E8F0), width: 1),
+                    top: BorderSide(color: Color(0xFFE5E7EB), width: 1),
                   ),
                 ),
                 child: SafeArea(
@@ -185,16 +178,16 @@ class ProductDetailView extends StatelessWidget {
                               ? () => _handleBuyPress(context, productController, productId)
                               : null,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: stock > 0 ? Theme.of(context).primaryColor : const Color(0xFFE2E8F0),
-                            disabledBackgroundColor: const Color(0xFFF1F5F9),
+                            backgroundColor: stock > 0 ? const Color(0xFF0F172A) : const Color(0xFFE5E7EB),
+                            disabledBackgroundColor: const Color(0xFFF3F4F6),
                             disabledForegroundColor: const Color(0xFFEF4444),
-                            minimumSize: const Size(double.infinity, 54),
+                            minimumSize: const Size(double.infinity, 50),
                           ),
                           child: Text(
                             stock > 0 ? 'BUY NOW' : 'OUT OF STOCK',
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                               color: stock > 0 ? Colors.white : const Color(0xFFEF4444),
                             ),
                           ),
@@ -215,17 +208,17 @@ class ProductDetailView extends StatelessWidget {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             title: Row(
               children: const [
-                Icon(Icons.check_circle_rounded, color: Color(0xFF10B981), size: 28),
-                SizedBox(width: 10),
+                Icon(Icons.check_circle_outline_rounded, color: Color(0xFF10B981), size: 24),
+                SizedBox(width: 8),
                 Text('Purchase Successful', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             content: const Text(
               'Your order has been placed successfully.\n\nYou can continue shopping or view your order history.',
-              style: TextStyle(fontSize: 14, color: Color(0xFF475569)),
+              style: TextStyle(fontSize: 14, color: Color(0xFF4B5563)),
             ),
             actions: [
               OutlinedButton(
@@ -234,12 +227,14 @@ class ProductDetailView extends StatelessWidget {
                 },
                 child: const Text('Continue Shopping'),
               ),
-              SizedBox(height:10),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Close dialog
                   Get.toNamed(Routes.orders); // Route to Order History page
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF0F172A),
+                ),
                 child: const Text('View Orders'),
               ),
             ],
@@ -255,23 +250,26 @@ class ProductDetailView extends StatelessWidget {
             context: context,
             barrierDismissible: false,
             builder: (context) => AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               title: Row(
                 children: const [
-                  Icon(Icons.error_rounded, color: Color(0xFFEF4444), size: 28),
-                  SizedBox(width: 10),
+                  Icon(Icons.error_outline_rounded, color: Color(0xFFEF4444), size: 24),
+                  SizedBox(width: 8),
                   Text('Out Of Stock', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ],
               ),
               content: const Text(
                 'Sorry, another customer purchased the last available item.',
-                style: TextStyle(fontSize: 14, color: Color(0xFF475569)),
+                style: TextStyle(fontSize: 14, color: Color(0xFF4B5563)),
               ),
               actions: [
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context); // Close dialog (stays on detail page)
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0F172A),
+                  ),
                   child: const Text('OK'),
                 ),
               ],
@@ -281,12 +279,15 @@ class ProductDetailView extends StatelessWidget {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               title: const Text('Error'),
               content: Text(error ?? 'An unexpected error occurred.'),
               actions: [
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0F172A),
+                  ),
                   child: const Text('OK'),
                 ),
               ],
