@@ -10,9 +10,26 @@ let io;
  * @returns {import('socket.io').Server} The configured Socket.IO server.
  */
 const initSocket = (httpServer) => {
+  const getCorsOriginOption = () => {
+    const clientUrl = process.env.CLIENT_URL;
+    if (!clientUrl) return 'http://localhost:3000';
+
+    const origins = clientUrl.split(',').map((o) => o.trim());
+
+    return (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or postman)
+      if (!origin) return callback(null, true);
+      if (origins.includes(origin) || origins.includes('*')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    };
+  };
+
   io = new Server(httpServer, {
     cors: {
-      origin: process.env.CLIENT_URL || 'http://localhost:3000',
+      origin: getCorsOriginOption(),
       methods: ['GET', 'POST'],
       credentials: true,
     },

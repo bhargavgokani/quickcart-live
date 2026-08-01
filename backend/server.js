@@ -2,7 +2,12 @@
 
 require('dotenv').config();
 
+// Validate required environment variables on startup
+const validateEnv = require('./src/config/env');
+validateEnv();
+
 const http = require('http');
+const mongoose = require('mongoose');
 const app = require('./app');
 const connectDB = require('./src/config/db');
 const { initSocket } = require('./src/config/socket');
@@ -29,8 +34,14 @@ start();
 // ─── Graceful Shutdown ────────────────────────────────────────────────────────
 const shutdown = (signal) => {
   console.log(`\n⚠️  ${signal} received. Shutting down gracefully…`);
-  httpServer.close(() => {
+  httpServer.close(async () => {
     console.log('✅ HTTP server closed.');
+    try {
+      await mongoose.connection.close();
+      console.log('✅ MongoDB connection closed.');
+    } catch (err) {
+      console.error('❌ Error closing MongoDB connection:', err.message);
+    }
     process.exit(0);
   });
 };

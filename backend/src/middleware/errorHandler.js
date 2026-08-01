@@ -15,9 +15,13 @@ const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused
     console.error(err.stack);
   }
 
+  const message = isProduction && statusCode === 500
+    ? 'Internal Server Error'
+    : (err.message || 'Internal Server Error');
+
   res.status(statusCode).json({
     success: false,
-    message: err.message || 'Internal Server Error',
+    message,
     ...(isProduction ? {} : { stack: err.stack }),
   });
 };

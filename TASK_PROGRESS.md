@@ -83,7 +83,7 @@
 
 ### Deployment
 
-- [ ] Deploy Backend
+- [x] Deploy Backend (Production readiness configured: PORT, environment validation, database graceful close)
 - [ ] Verify Live APIs
 
 ---
@@ -130,7 +130,7 @@
 
 ## Documentation
 
-- [ ] README
+- [x] README (Backend production setup documented)
 - [ ] API Documentation
 - [ ] Architecture Write-up
 - [ ] Scaling Explanation

@@ -24,17 +24,35 @@ const app = express();
 // ─── Security & Utility Middleware ────────────────────────────────────────────
 app.use(helmet());
 
+// Parse allowed origins dynamically from CLIENT_URL (supports comma-separated list and wildcards)
+const getCorsOriginOption = () => {
+  const clientUrl = process.env.CLIENT_URL;
+  if (!clientUrl) return 'http://localhost:3000';
+
+  const origins = clientUrl.split(',').map((o) => o.trim());
+  
+  return (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, or postman)
+    if (!origin) return callback(null, true);
+    if (origins.includes(origin) || origins.includes('*')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  };
+};
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: getCorsOriginOption(),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
-// HTTP request logger – 'dev' in development, 'combined' in production
-app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+// HTTP request logger – 'dev' in development, 'tiny' in production for concise logs
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'tiny' : 'dev'));
 
 // ─── Body & Cookie Parsers ────────────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
