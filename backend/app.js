@@ -60,6 +60,16 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
+// ─── Root Endpoint ────────────────────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'QuickCart Live API is running',
+    version: '1.0.0',
+    health: '/api/v1/health',
+  });
+});
+
 // All v1 routes are registered inside src/routes/index.js
 app.use('/api/v1', v1Routes);
 
