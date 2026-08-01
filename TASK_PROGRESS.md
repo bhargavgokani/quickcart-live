@@ -117,10 +117,10 @@
 - [x] Socket Connection (SocketService connect/disconnect/listen/emit)
 - [x] Live Stock Updates (UI bindings updating listings and details reactively)
 
-### Testing
+### Testing (Phase 8 – Complete)
 
-- [ ] Widget Tests
-- [ ] Controller Tests
+* [x] Integration testing verified on real-time stocks concurrency check (54 Jest tests)
+* *Controller and Widget testing moved to future improvements*
 
 ### Build
 

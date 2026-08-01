@@ -45,18 +45,3 @@ Configure these environment variables in your local `.env` file or in the **Envi
    ```
 
 ---
-
-## How to Deploy on Render
-
-1. Go to the **Render Dashboard** and select **New +** -> **Web Service**.
-2. Connect your Git repository containing the QuickCart project.
-3. Configure the following service settings:
-   * **Name**: `quickcart-live-backend`
-   * **Root Directory**: `backend` (if deploying from a monorepo setup)
-   * **Language/Runtime**: `Node`
-   * **Build Command**: `npm install`
-   * **Start Command**: `npm start`
-4. Expand the **Advanced** section and add all required environment variables under the **Environment Variables** panel (see the table above).
-5. Render will automatically provision the `PORT` and direct traffic to your Express application.
-6. Verify your deployment health status using the health check endpoint:
-   `https://quickcart-live.onrender.com/api/v1/health`
