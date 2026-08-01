@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../modules/auth/controllers/auth_controller.dart';
 import '../network/api_service.dart';
 import '../services/auth_service.dart';
 import '../services/order_service.dart';
@@ -15,5 +16,8 @@ class InitialBinding extends Bindings {
     Get.lazyPut<ProductService>(() => ProductService(), fenix: true);
     Get.lazyPut<OrderService>(() => OrderService(), fenix: true);
     Get.lazyPut<SocketService>(() => SocketService(), fenix: true);
+    
+    // Register AuthController permanently at app startup so it doesn't get disposed when transitioning routes
+    Get.put<AuthController>(AuthController(), permanent: true);
   }
 }
