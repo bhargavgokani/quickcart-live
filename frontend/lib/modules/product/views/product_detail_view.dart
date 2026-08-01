@@ -234,6 +234,7 @@ class ProductDetailView extends StatelessWidget {
                 },
                 child: const Text('Continue Shopping'),
               ),
+              SizedBox(height:10),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Close dialog
